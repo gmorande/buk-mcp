@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+secrets/
+.secrets/
+private/
+reports/private/
+.buk-mcp/
+*.log
+coverage/
+.DS_Store
+*.tgz

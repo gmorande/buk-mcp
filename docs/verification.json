@@ -1,0 +1,133 @@
+{
+  "generated_at": "2026-10-23T21:53:04.235Z",
+  "verification": "Real Buk read-only requests through an MCP stdio client. HR values and credentials excluded.",
+  "scope": {
+    "schema_country": "chile",
+    "schema_operations": 206,
+    "schema_reads": 119,
+    "schema_writes": 87,
+    "writes_executed": 0,
+    "customers_tested": 1
+  },
+  "summary": {
+    "passed": 12,
+    "partial": 0,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "Q01",
+      "question": "Busca a X y distingue sus fichas.",
+      "tool": "buk_search_employees",
+      "status": "passed",
+      "checks": [
+        "Employee identity resolved by ficha ID; no guessed match."
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "Muéstrame las áreas y subáreas de la organización.",
+      "tool": "buk_read",
+      "status": "passed",
+      "checks": [
+        "All pages returned; area hierarchy available."
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "¿Cuánto costó el equipo Tech el último mes cerrado?",
+      "tool": "buk_team_payroll",
+      "status": "passed",
+      "checks": [
+        "Nonempty historical team; standard Buk employer cost; component sum reconciles."
+      ]
+    },
+    {
+      "id": "Q04",
+      "question": "Separa haberes fijos, ocasionales y aportes del empleador de Tech.",
+      "tool": "buk_team_payroll",
+      "status": "passed",
+      "checks": [
+        "Earnings categories sum to gross; contributions exposed separately."
+      ]
+    },
+    {
+      "id": "Q05",
+      "question": "¿Cómo cambió el costo y la dotación de Tech frente al mes anterior?",
+      "tool": "buk_team_payroll",
+      "status": "passed",
+      "checks": [
+        "Separate historical membership for each month; delta arithmetic."
+      ]
+    },
+    {
+      "id": "Q06",
+      "question": "¿Quiénes integraban Tech a una fecha y cuánto sumaban sus sueldos base?",
+      "tool": "buk_recurring_payroll",
+      "status": "passed",
+      "checks": [
+        "Dated active employees; base wages sum per currency."
+      ]
+    },
+    {
+      "id": "Q07",
+      "question": "Si subo 5% los sueldos base de Tech, ¿cuál es el incremento mensual?",
+      "tool": "buk_recurring_payroll",
+      "status": "passed",
+      "checks": [
+        "Read-only scenario; exact 5% increase per currency."
+      ]
+    },
+    {
+      "id": "Q08",
+      "question": "Dame el historial salarial de X con fechas y aumentos.",
+      "tool": "buk_salary_history",
+      "status": "passed",
+      "checks": [
+        "Historical contractual wages and payroll returned for a unique ficha."
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "Compara la evolución del sueldo base de X con el IPC y su poder adquisitivo.",
+      "tool": "buk_salary_history",
+      "status": "passed",
+      "checks": [
+        "Official INE indices; real change uses wage ratio divided by CPI ratio."
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "¿Cuáles fueron el bruto, descuentos y líquido de X en un mes?",
+      "tool": "buk_read",
+      "status": "passed",
+      "checks": [
+        "Requested ficha and period; gross less deductions equals net."
+      ]
+    },
+    {
+      "id": "Q11",
+      "question": "¿Cuántos días de vacaciones tiene X a una fecha determinada?",
+      "tool": "buk_read",
+      "status": "passed",
+      "checks": [
+        "Explicit calculation date and future-vacation discount choice."
+      ]
+    },
+    {
+      "id": "Q12",
+      "question": "¿Qué empresas o razones sociales puede consultar esta conexión?",
+      "tool": "buk_read",
+      "status": "passed",
+      "checks": [
+        "Company endpoint succeeds and all pages are consumed."
+      ]
+    }
+  ],
+  "limitations": [
+    "This suite verifies the listed question workflows, not every endpoint against live production data.",
+    "No production mutation is performed.",
+    "MCP-level execution is tested; natural-language model behavior is not a deterministic test.",
+    "Passing with one tenant does not guarantee another tenant has the same licensed modules or key permissions."
+  ]
+}

@@ -1,0 +1,11 @@
+node_modules
+.git
+.env
+.env.*
+secrets
+.secrets
+private
+reports
+.buk-mcp
+coverage
+*.log
